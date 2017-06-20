@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.sanket.a75fcodingassignment.MainActivity">
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Hello World!"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/back">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical" >
+
+
+            <!--New code added-->
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:textColor="#FFFFFF00"
+                android:text="@string/hello" />
+
+            <Button android:id="@+id/ambient_btn"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/ambient_label"
+                android:background="@drawable/btn" />
+            <TextView android:id="@+id/ambient_text"
+                android:paddingBottom="20dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_placeholder"
+                android:textColor="#FFFF66FF"
+                android:textStyle="bold" />
+
+            <Button android:id="@+id/light_btn"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/light_label"
+                android:background="@drawable/btn" />
+            <TextView android:id="@+id/light_text"
+                android:paddingBottom="20dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_placeholder"
+                android:textColor="#FFFF66FF"
+                android:textStyle="bold" />
+
+            <Button android:id="@+id/pressure_btn"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/pressure_label"
+                android:background="@drawable/btn" />
+            <TextView android:id="@+id/pressure_text"
+                android:paddingBottom="20dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_placeholder"
+                android:textColor="#FFFF66FF"
+                android:textStyle="bold" />
+
+            <Button android:id="@+id/humidity_btn"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/humidity_label"
+                android:background="@drawable/btn" />
+            <TextView android:id="@+id/humidity_text"
+                android:paddingBottom="20dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_placeholder"
+                android:textColor="#FFFF66FF"
+                android:textStyle="bold" />
+
+            <Button android:id="@+id/send_btn"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/send_label"
+                android:background="@drawable/btn" />
+
+            <!--New code end-->
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
