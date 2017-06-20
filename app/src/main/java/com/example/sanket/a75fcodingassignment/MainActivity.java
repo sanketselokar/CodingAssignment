@@ -14,9 +14,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements OnClickListener, SensorEventListener
 {
-    private Button ambientBtn, lightBtn, pressureBtn, humidityBtn;
+    private Button ambientBtn, lightBtn, pressureBtn, humidityBtn, send_btn;
     private TextView ambientValue, lightValue, pressureValue, humidityValue;
     private TextView[] valueFields = new TextView[4];
 
@@ -39,11 +50,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         lightBtn = (Button)findViewById(R.id.light_btn);
         pressureBtn = (Button)findViewById(R.id.pressure_btn);
         humidityBtn = (Button)findViewById(R.id.humidity_btn);
+        send_btn = (Button)findViewById(R.id.send_btn);
 
         ambientBtn.setOnClickListener(this);
         lightBtn.setOnClickListener(this);
         pressureBtn.setOnClickListener(this);
         humidityBtn.setOnClickListener(this);
+        send_btn.setOnClickListener(this);
 
         ambientValue = (TextView)findViewById(R.id.ambient_text);
         valueFields[AMBIENT]=ambientValue;
@@ -103,6 +116,36 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             else
                 senseManage.registerListener(this, envSense, SensorManager.SENSOR_DELAY_NORMAL);
         }
+
+        //Send button
+        else if(v.getId()==R.id.send_btn)
+        {
+            System.out.println("Inside the send button");
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost("http://mywebsite.com/phpscriptwebside.php");
+            try {
+                SensorEvent event = null;
+                float sensorValue1 = event.values[0];
+                float sensorValue2 = event.values[0];
+                float sensorValue3 = event.values[0];
+                float sensorValue4 = event.values[0];
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+                nameValuePairs.add(new BasicNameValuePair("ambient", Float.toString(sensorValue1)));
+                nameValuePairs.add(new BasicNameValuePair("light", Float.toString(sensorValue2)));
+                nameValuePairs.add(new BasicNameValuePair("pressure", Float.toString(sensorValue3)));
+                nameValuePairs.add(new BasicNameValuePair("humidity", Float.toString(sensorValue4)));
+
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                httpclient.execute(httppost);
+
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+            }
+            String sendMessage = "Data has been sent";
+            Toast accuracyToast = Toast.makeText(this.getApplicationContext(), sendMessage, Toast.LENGTH_SHORT);
+            accuracyToast.show();
+        }
+
     }
 
     @Override
@@ -165,4 +208,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         super.onPause();
         senseManage.unregisterListener(this);
     }
+
+
 }
